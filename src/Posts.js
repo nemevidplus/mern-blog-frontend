@@ -20,7 +20,7 @@ const Posts = () => {
 
   useEffect(() => {
     axios
-      .get("/posts")
+      .get("https://mern-blog-backend-08qy.onrender.com")
       .then((res) => {
         res.data.forEach((post) => {
           console.log(`Title: ${post.title}, Description: ${post.description}`);
