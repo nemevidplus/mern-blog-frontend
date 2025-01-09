@@ -8,6 +8,11 @@ import { useNavigate } from "react-router";
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
+
+// Set Axios base URL
+axios.defaults.baseURL = "https://mern-blog-backend-08qy.onrender.com";
+
+
 const Posts = () => {
     const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
@@ -20,7 +25,7 @@ const Posts = () => {
 
   useEffect(() => {
     axios
-      .get("https://mern-blog-backend-08qy.onrender.com")
+      .get("/posts")
       .then((res) => {
         res.data.forEach((post) => {
           console.log(`Title: ${post.title}, Description: ${post.description}`);
@@ -33,7 +38,7 @@ const Posts = () => {
 
   const handleDelete = (postId) => {
     axios
-    .delete(`/delete/${postId}` )
+    .delete(`/delete/${postId}` ) 
     .then((res) => {
         console.log(res.data);
         setPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId)); // Remove the deleted post from the state
